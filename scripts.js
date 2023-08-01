@@ -1,3 +1,5 @@
+// Initialy setup and Constructor for Book Object
+
 let book1 = new Book('The Hobbit', 'J.R.R Tolkien', 304, true)
 
 let myLibrary = [book1];
@@ -8,6 +10,8 @@ function Book(title, author, pages, read) {
   this.pages = pages;
   this.read = read;
 }
+
+// Turn Books in myLibrary into DOM Elements and listen for Deletion Events
 
 function showBooks() {
     const booksList = document.getElementById('books');
@@ -63,13 +67,16 @@ function showBooks() {
     });
 }
 
+// Add book to myLibrary array and add to DOM 
+
 function addBookToLibrary(title, author, pages, read) {
     event.preventDefault();
     let newBook = new Book(title, author, pages, read);
     myLibrary.push(newBook);
-    console.log(myLibrary);
     showBooks();
 }
+
+// Grab form data
 
 function getValues(event){
     event.preventDefault();
@@ -79,6 +86,8 @@ function getValues(event){
     let read = this.read.value;
     addBookToLibrary(title, author, pages, read);
  }	
+
+ // Load in current books in library, listen for form submission
 
 window.onload = function() {
     const newBookButton = document.getElementById('newBookBtn');
