@@ -42,10 +42,28 @@ html, body {
 #addForm {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 25%;
     margin: 0 auto;
 }
 
 #addForm {
     display: none;
+}
+
+#addForm input {
+    font-size: 15px;
+    padding: 3px;
+    margin-bottom: 2%;
+}
+
+#newBookBtn {
+    font-size: 20px;
+    padding: 5px;
+    transition: 1s;
+}
+
+#newBookBtn:hover {
+    background-color: gray;
+    transition: 0.5s;
+    cursor: pointer;
 }

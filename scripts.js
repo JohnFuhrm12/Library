@@ -1,9 +1,4 @@
-let book1 = {
-    title: 'The Hobbit',
-    author: 'J.R.R Tolkien',
-    pages: 304,
-    read: true
-}
+let book1 = new Book('The Hobbit', 'J.R.R Tolkien', 304, true)
 
 let myLibrary = [book1];
 
@@ -39,6 +34,14 @@ function showBooks() {
         newReadButton.id = 'read-' + book;
         newDeleteButton.innerText = 'Delete';
         newDeleteButton.id = 'del-' + book;
+
+        newDeleteButton.onclick = function() {
+            console.log(myLibrary.indexOf(book));
+            //let currentIndex = myLibrary.indexOf(book);
+            //myLibrary.splice(currentIndex, 1);
+            document.getElementById(book).parentElement.remove();
+            console.log(myLibrary);
+        }; 
 
         newBookAuthor.innerText = book.author;
         newBookPages.innerText = book.pages + ' Pages';
@@ -76,11 +79,10 @@ window.onload = function() {
     const newBookButton = document.getElementById('newBookBtn');
     const newBookForm = document.getElementById('addForm');
 
-    const booksList = document.getElementById('books');
     let notLoaded = true;
 
     newBookButton.addEventListener('click', function() {
-        newBookForm.style.display = 'block';
+        newBookForm.style.display = 'flex';
         newBookButton.style.display = 'none';
     });
 
