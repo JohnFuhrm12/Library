@@ -1,6 +1,6 @@
-// Initialy setup and Constructor for Book Object
+// Initial setup and Constructor for Book Object
 
-let book1 = new Book('The Hobbit', 'J.R.R Tolkien', 304, true)
+let book1 = new Book('The Hobbit', 'J.R.R Tolkien', 304, true);
 
 let myLibrary = [book1];
 
@@ -9,7 +9,7 @@ function Book(title, author, pages, read) {
   this.author = author;
   this.pages = pages;
   this.read = read;
-}
+};
 
 // Turn Books in myLibrary into DOM Elements and listen for Deletion Events
 
@@ -31,10 +31,9 @@ function showBooks() {
 
         newBookDiv.className = 'bookDiv';
         newBookTitle.innerText = book.title;
-        newBookTitle.id = book;
         newBookTitle.className = 'bookTitle';
         newReadButton.innerText = 'Read';
-        newReadButton.id = 'read-' + book;
+        newReadButton.className = 'readBtn';
         newDeleteButton.innerText = 'Delete';
         newDeleteButton.className = 'DeleteBtn';
 
@@ -50,7 +49,7 @@ function showBooks() {
         newBookDiv.appendChild(newReadButton);
         newBookDiv.appendChild(newDeleteButton);
         booksList.appendChild(newBookDiv);
-    })
+    });
 
     let deleteButtons = Object.values(document.getElementsByClassName('DeleteBtn'));
 
@@ -63,9 +62,17 @@ function showBooks() {
             const libraryIndex = myLibrary.indexOf(libraryObj);
             myLibrary.splice(libraryIndex, 1);
             button.parentElement.remove();
-        })
+        });
     });
-}
+
+    let readButtons = Object.values(document.getElementsByClassName('ReadBtn'));
+
+    readButtons.forEach((button) => {
+        button.addEventListener('click', function() {
+            console.log('read');
+        });
+    });
+};
 
 // Add book to myLibrary array and add to DOM 
 
@@ -105,5 +112,5 @@ window.onload = function() {
     if (notLoaded) {
         showBooks();
         notLoaded = false;
-    }
-}
+    };
+};
