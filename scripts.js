@@ -24,7 +24,6 @@ function showBooks() {
 
         let newBookAuthor = document.createElement('h2');
         let newBookPages = document.createElement('h2');
-        let newBookRead = document.createElement('h2');
 
         let newReadButton = document.createElement('button');
         let newDeleteButton = document.createElement('button');
@@ -32,24 +31,29 @@ function showBooks() {
         newBookDiv.className = 'bookDiv';
         newBookTitle.innerText = book.title;
         newBookTitle.className = 'bookTitle';
-        newReadButton.innerText = 'Read';
         newReadButton.className = 'readBtn';
         newDeleteButton.innerText = 'Delete';
         newDeleteButton.className = 'DeleteBtn';
 
+        if (book.read) {
+            newReadButton.innerText = 'Read';
+        } else {
+            newReadButton.innerText = 'Not Read';
+        };
+
         newBookAuthor.innerText = book.author;
         newBookPages.innerText = book.pages + ' Pages';
-        newBookRead.innerText = book.read;
 
         newBookDiv.appendChild(newBookTitle);
         newBookDiv.appendChild(newBookAuthor);
         newBookDiv.appendChild(newBookPages);
-        newBookDiv.appendChild(newBookRead);
 
         newBookDiv.appendChild(newReadButton);
         newBookDiv.appendChild(newDeleteButton);
         booksList.appendChild(newBookDiv);
     });
+
+    // Event Listeners for Read and Delete Buttons
 
     let deleteButtons = Object.values(document.getElementsByClassName('DeleteBtn'));
 
@@ -65,11 +69,23 @@ function showBooks() {
         });
     });
 
-    let readButtons = Object.values(document.getElementsByClassName('ReadBtn'));
+    let readButtons = Object.values(document.getElementsByClassName('readBtn'));
 
     readButtons.forEach((button) => {
         button.addEventListener('click', function() {
-            console.log('read');
+            const bookTitle = button.parentElement.childNodes[0].innerText;
+            const libraryObj = myLibrary.find(book => {
+                return book.title === bookTitle;
+            });
+            const libraryIndex = myLibrary.indexOf(libraryObj);
+            let text = button.innerText;
+            if (text === 'Read') {
+                button.innerText = 'Not Read';
+                myLibrary[libraryIndex].read = false;
+            } else {
+                button.innerText = "Read";
+                myLibrary[libraryIndex].read = true;
+            };
         });
     });
 };
@@ -90,7 +106,7 @@ function getValues(event){
     let title = this.title.value;
     let author = this.author.value;
     let pages = this.pages.value;
-    let read = this.read.value;
+    let read = this.read.checked;
     addBookToLibrary(title, author, pages, read);
  }	
 
