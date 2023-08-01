@@ -1,4 +1,11 @@
-let myLibrary = ['book1', 'book2'];
+let book1 = {
+    title: 'The Hobbit',
+    author: 'J.R.R Tolkien',
+    pages: 304,
+    read: true
+}
+
+let myLibrary = [book1];
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -14,21 +21,34 @@ function showBooks() {
 
     myLibrary.forEach((book) => {
         let newBookDiv = document.createElement('div');
-        let newBook = document.createElement('h1');
+        let newBookTitle = document.createElement('h1');
+
+        let newBookAuthor = document.createElement('h2');
+        let newBookPages = document.createElement('h2');
+        let newBookRead = document.createElement('h2');
+
         let newReadButton = document.createElement('button');
         let newDeleteButton = document.createElement('button');
 
         newBookDiv.className = 'bookDiv';
         newBookDiv.id = 'bookDiv';
-        newBook.innerText = book;
-        newBook.id = book;
-        newBook.className = 'bookTitle';
+        newBookTitle.innerText = book.title;
+        newBookTitle.id = book;
+        newBookTitle.className = 'bookTitle';
         newReadButton.innerText = 'Read';
         newReadButton.id = 'read-' + book;
         newDeleteButton.innerText = 'Delete';
         newDeleteButton.id = 'del-' + book;
 
-        newBookDiv.appendChild(newBook);
+        newBookAuthor.innerText = book.author;
+        newBookPages.innerText = book.pages + ' Pages';
+        newBookRead.innerText = book.read;
+
+        newBookDiv.appendChild(newBookTitle);
+        newBookDiv.appendChild(newBookAuthor);
+        newBookDiv.appendChild(newBookPages);
+        newBookDiv.appendChild(newBookRead);
+
         newBookDiv.appendChild(newReadButton);
         newBookDiv.appendChild(newDeleteButton);
         booksList.appendChild(newBookDiv);
@@ -67,26 +87,7 @@ window.onload = function() {
     newBookForm.addEventListener("submit", getValues);
 
     if (notLoaded) {
-        myLibrary.forEach((book) => {
-            let newBookDiv = document.createElement('div');
-            let newBook = document.createElement('h1');
-            let newReadButton = document.createElement('button');
-            let newDeleteButton = document.createElement('button');
-
-            newBookDiv.className = 'bookDiv';
-            newBook.innerText = book;
-            newBook.id = book;
-            newBook.className = 'bookTitle';
-            newReadButton.innerText = 'Read';
-            newReadButton.id = 'read-' + book;
-            newDeleteButton.innerText = 'Delete';
-            newDeleteButton.id = 'del-' + book;
-
-            newBookDiv.appendChild(newBook);
-            newBookDiv.appendChild(newReadButton);
-            newBookDiv.appendChild(newDeleteButton);
-            booksList.appendChild(newBookDiv);
-        })
+        showBooks();
         notLoaded = false;
     }
 }
