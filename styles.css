@@ -1,0 +1,47 @@
+body {
+    margin: 0;
+    background-color: black;
+    align-items: center;
+}
+
+html, body {
+	max-height: 100%;
+    color: white;
+    align-items: center;
+    text-align: center;
+}
+
+#navbar {
+    background-color: aqua;
+    border-bottom: solid 3px white;
+    text-align: left;
+}
+
+#titleText {
+    margin-top: 0;
+    padding: 15px;
+    padding-bottom: 0px;
+    color: black;
+    font-size: 40px;
+}
+
+#books {
+    display: flex;
+    flex-direction: row;
+}
+
+.bookDiv {
+    margin: 5%;
+    border: solid 2px white;
+}
+
+.bookTitle {
+    padding: 5px;
+}
+
+#addForm {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 0 auto;
+}
