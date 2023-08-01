@@ -26,22 +26,13 @@ function showBooks() {
         let newDeleteButton = document.createElement('button');
 
         newBookDiv.className = 'bookDiv';
-        newBookDiv.id = 'bookDiv';
         newBookTitle.innerText = book.title;
         newBookTitle.id = book;
         newBookTitle.className = 'bookTitle';
         newReadButton.innerText = 'Read';
         newReadButton.id = 'read-' + book;
         newDeleteButton.innerText = 'Delete';
-        newDeleteButton.id = 'del-' + book;
-
-        newDeleteButton.onclick = function() {
-            console.log(myLibrary.indexOf(book));
-            //let currentIndex = myLibrary.indexOf(book);
-            //myLibrary.splice(currentIndex, 1);
-            document.getElementById(book).parentElement.remove();
-            console.log(myLibrary);
-        }; 
+        newDeleteButton.className = 'DeleteBtn';
 
         newBookAuthor.innerText = book.author;
         newBookPages.innerText = book.pages + ' Pages';
@@ -56,6 +47,20 @@ function showBooks() {
         newBookDiv.appendChild(newDeleteButton);
         booksList.appendChild(newBookDiv);
     })
+
+    let deleteButtons = Object.values(document.getElementsByClassName('DeleteBtn'));
+
+    deleteButtons.forEach((button) => {
+        button.addEventListener('click', function() {
+            const bookTitle = button.parentElement.childNodes[0].innerText;
+            const libraryObj = myLibrary.find(book => {
+                return book.title === bookTitle;
+            });
+            const libraryIndex = myLibrary.indexOf(libraryObj);
+            myLibrary.splice(libraryIndex, 1);
+            button.parentElement.remove();
+        })
+    });
 }
 
 function addBookToLibrary(title, author, pages, read) {
