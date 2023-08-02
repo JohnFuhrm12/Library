@@ -1,15 +1,17 @@
-// Initial setup and Constructor for Book Object
+// Initial setup and Class for Book Object
+
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    };
+}
 
 let book1 = new Book('The Hobbit', 'J.R.R Tolkien', 304, true);
 
 let myLibrary = [book1];
-
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-};
 
 // Turn Books in myLibrary into DOM Elements and listen for Deletion Events
 
